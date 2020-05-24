@@ -1,13 +1,11 @@
-[![Download](https://api.bintray.com/packages/btraceio/releases/btrace/images/download.svg) ](https://bintray.com/btraceio/releases/btrace/_latestVersion) [![Build Status](https://travis-ci.org/btraceio/btrace.svg?branch=master)](https://travis-ci.org/btraceio/btrace) [![codecov.io](https://codecov.io/github/btraceio/btrace/coverage.svg?branch=master)](https://codecov.io/github/btraceio/btrace?branch=master) [![Join the chat at https://gitter.im/jbachorik/btrace](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/btraceio/btrace?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Project Stats](https://www.openhub.net/p/btrace/widgets/project_thin_badge.gif)](https://www.openhub.net/p/btrace)
+[![Download](https://api.bintray.com/packages/btraceio/releases/btrace/images/download.svg) ](https://bintray.com/btraceio/releases/btrace/_latestVersion) [![Build Status](https://travis-ci.org/btraceio/btrace.svg?branch=develop)](https://travis-ci.org/btraceio/btrace) [![codecov.io](https://codecov.io/github/btraceio/btrace/coverage.svg?branch=develop)](https://codecov.io/github/btraceio/btrace?branch=develop) [![Join the chat at https://gitter.im/jbachorik/btrace](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/btraceio/btrace?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Project Stats](https://www.openhub.net/p/btrace/widgets/project_thin_badge.gif)](https://www.openhub.net/p/btrace)
 
 # btrace
 
 A safe, dynamic tracing tool for the Java platform
 
 ## Version
-1.3.11.2 ([Release Page](https://github.com/btraceio/btrace/releases/latest))
-
-_! NOTE: For the latest develop changes head to ['develop' branch](https://github.com/btraceio/btrace/tree/develop)_
+2.0.1
 
 ## Quick Summary
 BTrace is a safe, dynamic tracing tool for the Java platform.
@@ -19,19 +17,23 @@ BTrace can be used to dynamically trace a running Java program (similar to DTrac
 * Powered by [JCTools](https://github.com/JCTools/JCTools)
 * Powered by [hppcrt](https://github.com/vsonnier/hppcrt)
 * Optimized with [JProfiler Java Profiler](http://www.ej-technologies.com/products/jprofiler/overview.html)
+* Build env helper using [SDKMAN!] (https://sdkman.io/)
 
 ## Building BTrace
 
 ### Setup
 You will need the following applications installed
 
-* [JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) (preferrably JDK8)
 * [Git](http://git-scm.com/downloads)
-* [Gradle](http://gradle.org)
-* (optionally) [Ant](http://ant.apache.org/bindownload.cgi)
-* (optionally) [Maven3](http://maven.apache.org/download.cgi)
+* __JDKs__ - JDK 8, Java 9 and Java 11 are required to be available
+* (optionally, the default launcher is the bundled `gradlew` wrapper) [Gradle](http://gradle.org)
+
+In order to ease the pre-build config the `config_build.sh` script is provided. You should run it first as `source config_build.sh` to automatically download all required JDKs and set up the corresponding `JAVA_*_HOME` env variables.
 
 ### Build
+
+#### Java
+Your __JAVA_HOME__ must point to JDK 11 (eg. __JAVA_11_HOME__)
 
 #### Gradle
 ```sh
@@ -39,14 +41,8 @@ cd <btrace>
 ./gradlew build
 ./gradlew buildDistributions
 ```
-The binary dist packages can be found in `<btrace>/build/distributions` as the *.tar.gz, *.zip, *.rpm and *.deb files.
-
-#### Ant (legacy build)
-```sh
-cd <btrace>/make
-ant dist
-```
-The binary dist packages can be found in `<btrace>/dist` as the *.tar.gz and *.zip files
+The binary dist packages can be found in `<btrace>/btrace-dist/build/distributions` as the *.tar.gz, *.zip, *.rpm and *.deb files.
+The exploded binary folder which can be used right away is located at `<btrace>/btrace-dist/build/resources/main` which serves as the __BTRACE_HOME__ location.
 
 
 ## Using BTrace
@@ -69,14 +65,6 @@ For the detailed user guide, please, check the [Wiki](https://github.com/btracei
 ### Maven Integration
 The [maven plugin](https://github.com/btraceio/btrace-maven) is providing easy compilation of __BTrace__ scripts as a part of the build process. As a bonus you can utilize the _BTrace Project Archetype_ to bootstrap developing __BTrace__ scripts.
 
-## Mailing lists
-
-These mailing lists are hosted at **http://librelist.com**
-
-* **btrace.users@librelist.com**
-* **btrace.dev@librelist.com**
-* **btrace.commits@librelist.com**
-
 ## Contributing - !!! Important !!!
 
 Pull requests can be accepted only from the signers of [Oracle Contributor Agreement](http://www.oracle.com/technetwork/community/oca-486395.html)
@@ -86,13 +74,13 @@ Pull requests can be accepted only from the signers of [Oracle Contributor Agree
 Using the command line, add the following to your /etc/apt/sources.list system config file:
 
 ```
-echo "deb http://dl.bintray.com/btraceio/deb trusty universe" | sudo tee -a /etc/apt/sources.list
+echo "deb http://dl.bintray.com/btraceio/deb xenial universe" | sudo tee -a /etc/apt/sources.list
 ```
 
 Or, add the repository URLs using the "Software Sources" admin UI:
 
 ```
-deb http://dl.bintray.com/btraceio/deb trusty universe
+deb http://dl.bintray.com/btraceio/deb xenial universe
 ```
 
 ### RPM Repository
